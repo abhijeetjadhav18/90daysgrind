@@ -21,9 +21,9 @@ public class graph {
     boolean [] visited = new boolean[n];
     Queue<Integer> q = new LinkedList<>();
     q.add(start);
+    visited[start]=true;
     while(!q.isEmpty()){
       int u = q.poll();
-      visited[u]=true;
       System.out.println(u + " ");
       for(int v : adj.get(u)){
         if(!visited[v]){
@@ -35,6 +35,20 @@ public class graph {
     System.out.println();
   }
 
+  void dfs (int start){
+    boolean [] visited = new boolean[n];
+    dfsHelper(start , visited);
+    System.out.println();
+  }
+  void dfsHelper(int u , boolean [] visited){
+    System.out.println(u + " ");
+    visited[u]= true ;
+    for(int v : adj.get(u)){
+      if(!visited[v]){
+        dfsHelper(v , visited);
+      }
+    }
+  }
 
 
   public static void main(String[] args) {
@@ -47,6 +61,7 @@ public class graph {
     g.addEdge(3,4);
 
     g.bfs(0);
+    g.dfs(0);
 
 
   }
